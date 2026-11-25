@@ -16,6 +16,8 @@ dist_installer/
 frontend/dist/
 build/pyinstaller_work/
 build/pyinstaller_work_xda/
+build/pyinstaller_work_drivers/
+build/usb_drivers/
 
 # Datos de usuario, capturas y archivos multimedia pesados
 exports/

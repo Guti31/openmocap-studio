@@ -37,7 +37,20 @@
       if (!res.ok) return null;
       const data = await res.json();
       const assets = Array.isArray(data.assets) ? data.assets : [];
+      const driverAsset =
+        assets.find(
+          (a) =>
+            typeof a.name === 'string' &&
+            a.name.toLowerCase().endsWith('.exe') &&
+            a.name.toLowerCase().includes('driver'),
+        ) || null;
       const exeAsset =
+        assets.find(
+          (a) =>
+            typeof a.name === 'string' &&
+            a.name.toLowerCase().endsWith('.exe') &&
+            !a.name.toLowerCase().includes('driver'),
+        ) ||
         assets.find((a) => typeof a.name === 'string' && a.name.toLowerCase().endsWith('.exe')) ||
         assets[0] ||
         null;
@@ -50,6 +63,9 @@
         downloadUrl: exeAsset ? exeAsset.browser_download_url : data.html_url || fallbackUrl,
         exeName: exeAsset ? exeAsset.name : '',
         sizeMb: exeAsset ? formatMb(exeAsset.size) : '',
+        driversDownloadUrl: driverAsset ? driverAsset.browser_download_url : '',
+        driversName: driverAsset ? driverAsset.name : '',
+        driversSizeMb: driverAsset ? formatMb(driverAsset.size) : '',
       };
     } catch {
       return null;
@@ -66,12 +82,12 @@
     const cardVerEl = document.getElementById('card-version');
     const dlBtn = document.getElementById('hero-download-btn');
     const dlLabel = document.getElementById('hero-download-label');
+    const drvBtn = document.getElementById('hero-drivers-btn');
+    const drvLabel = document.getElementById('hero-drivers-label');
     const relBtn = document.getElementById('hero-releases-btn');
     const notesEl = document.getElementById('release-notes-content');
     const featEl = document.getElementById('hero-features');
     const reqEl = document.getElementById('requirements-list');
-    const movellaEl = document.getElementById('driver-movella-link');
-    const ftdiEl = document.getElementById('driver-ftdi-link');
 
     if (descEl) descEl.textContent = app.shortDesc || descEl.textContent;
     if (badgeEl) badgeEl.textContent = `${app.status || 'Disponible'} · ${app.platform || 'Windows 10/11'}`;
@@ -84,9 +100,12 @@
 
     if (dlBtn) dlBtn.href = (rel && rel.downloadUrl) || app.fallbackDownloadUrl;
     if (dlLabel) dlLabel.textContent = `Descargar ${app.name} (${cleanTag})`;
+    const driversUrl = (rel && rel.driversDownloadUrl) || app.fallbackDriversUrl;
+    const driversSize = (rel && rel.driversSizeMb) || app.fallbackDriversSizeMb || '';
+    const driversBaseLabel = app.driversLabel || 'Descargar Drivers Completos (Xsens + FTDI Serial)';
+    if (drvBtn && driversUrl) drvBtn.href = driversUrl;
+    if (drvLabel) drvLabel.textContent = `${driversBaseLabel}${driversSize ? ` · ${driversSize}` : ''}`;
     if (relBtn) relBtn.href = (rel && rel.htmlUrl) || app.fallbackDownloadUrl;
-    if (movellaEl && app.driversUrl) movellaEl.href = app.driversUrl;
-    if (ftdiEl && app.ftdiDriversUrl) ftdiEl.href = app.ftdiDriversUrl;
 
     if (notesEl) {
       notesEl.textContent =
@@ -147,6 +166,12 @@
         const ver = rel && rel.tag ? rel.tag : `v${app.fallbackVersion || '1.0.0'}`;
         const dlUrl = (rel && rel.downloadUrl) || app.fallbackDownloadUrl || '#';
         const sizeLabel = rel && rel.sizeMb ? ` · ${rel.sizeMb}` : '';
+        const drvUrl = (rel && rel.driversDownloadUrl) || app.fallbackDriversUrl || '';
+        const drvSize = (rel && rel.driversSizeMb) || app.fallbackDriversSizeMb || '';
+        const drvLabel = app.driversLabel || 'Descargar Drivers Completos (Xsens + FTDI Serial)';
+        const drvButtonHtml = drvUrl
+          ? `<a href="${escapeHtml(drvUrl)}" target="_blank" rel="noopener" class="btn btn-drivers btn-card">${escapeHtml(drvLabel)}${drvSize ? ` · ${escapeHtml(drvSize)}` : ''}</a>`
+          : '';
         return `
           <article class="app-card">
             <div class="app-card-top">
@@ -157,9 +182,12 @@
             <p>${escapeHtml(app.shortDesc)}</p>
             <div class="app-card-footer">
               <span>${escapeHtml(app.platform)} · <strong>${escapeHtml(ver)}</strong>${escapeHtml(sizeLabel)}</span>
-              <a href="${escapeHtml(dlUrl)}" target="_blank" rel="noopener" class="btn btn-primary" style="padding:8px 14px;font-size:0.82rem;">
-                Descargar
-              </a>
+              <div class="app-card-actions">
+                <a href="${escapeHtml(dlUrl)}" target="_blank" rel="noopener" class="btn btn-primary btn-card">
+                  Descargar ${escapeHtml(app.name)} (${escapeHtml(ver)})
+                </a>
+                ${drvButtonHtml}
+              </div>
             </div>
           </article>
         `;

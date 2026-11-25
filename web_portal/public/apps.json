@@ -29,8 +29,9 @@
       ],
       "fallbackDownloadUrl": "https://github.com/Guti31/openmocap-studio/releases/latest",
       "repoUrl": "https://github.com/Guti31/openmocap-studio",
-      "driversUrl": "https://www.movella.com/support/software-documentation",
-      "ftdiDriversUrl": "https://ftdichip.com/drivers/vcp-drivers/"
+      "fallbackDriversUrl": "https://github.com/Guti31/openmocap-studio/releases/latest/download/Drivers_Xsens_Awinda_Win64.exe",
+      "fallbackDriversSizeMb": "17.6 MB",
+      "driversLabel": "Descargar Drivers Completos (Xsens + FTDI Serial)"
     }
   ],
   "upcoming": [

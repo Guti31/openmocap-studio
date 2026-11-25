@@ -119,10 +119,40 @@ def main() -> int:
     exe_path = DIST_INSTALLER / f"OpenMocap Studio Setup {new_version}.exe"
     yml_path = DIST_INSTALLER / "latest.yml"
     blockmap_path = DIST_INSTALLER / f"OpenMocap Studio Setup {new_version}.exe.blockmap"
+    drivers_exe = DIST_INSTALLER / "Drivers_Xsens_Awinda_Win64.exe"
 
     for artifact in (exe_path, yml_path, blockmap_path):
         if not artifact.is_file():
             raise FileNotFoundError(f"No se encontró el artefacto requerido para auto-updater: {artifact}")
+
+    if not drivers_exe.is_file():
+        driver_script = ROOT / "build" / "install_awinda_drivers.py"
+        usb_drivers_dir = ROOT / "build" / "usb_drivers"
+        pyinstaller_exe = ROOT / "backend" / ".venv" / "Scripts" / "pyinstaller.exe"
+        if driver_script.is_file() and usb_drivers_dir.is_dir() and pyinstaller_exe.is_file():
+            run_step(
+                [
+                    str(pyinstaller_exe),
+                    "--clean",
+                    "--noconfirm",
+                    "--onefile",
+                    "--uac-admin",
+                    "--icon",
+                    str(ROOT / "build" / "icon.ico"),
+                    "--add-data",
+                    f"{usb_drivers_dir};usb_drivers",
+                    "--distpath",
+                    str(DIST_INSTALLER),
+                    "--workpath",
+                    str(ROOT / "build" / "pyinstaller_work_drivers"),
+                    "--specpath",
+                    str(ROOT / "build"),
+                    "--name",
+                    "Drivers_Xsens_Awinda_Win64",
+                    str(driver_script),
+                ],
+                cwd=ROOT,
+            )
 
     notes = args.notes.strip() or (
         f"Actualización OpenMocap Studio v{new_version}: mejoras de estabilidad, cinemática y exportación."
@@ -136,15 +166,17 @@ def main() -> int:
     run_step([git_exe, "push", "origin", "main"], cwd=ROOT)
 
     tag = f"v{new_version}"
+    release_assets = [str(exe_path), str(yml_path), str(blockmap_path)]
+    if drivers_exe.is_file():
+        release_assets.append(str(drivers_exe))
+
     run_step(
         [
             gh_exe,
             "release",
             "create",
             tag,
-            str(exe_path),
-            str(yml_path),
-            str(blockmap_path),
+            *release_assets,
             "--repo",
             "Guti31/openmocap-studio",
             "--title",
