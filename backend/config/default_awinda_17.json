@@ -1,0 +1,36 @@
+{
+  "profile_name": "Xsens Awinda 17 Sensores (Predeterminado)",
+  "brand": "xsens_awinda",
+  "protocol": "xda",
+  "mappings": {
+    "PELVIS": "00B4D904",
+    "STERNUM": "00B4D8B2",
+    "HEAD": "00B4D902",
+    "SHOULDER_L": "00B4D8F1",
+    "UPPER_ARM_L": "00B4D8F2",
+    "FOREARM_L": "00B4D903",
+    "HAND_L": "00B4D905",
+    "SHOULDER_R": "00B4D901",
+    "UPPER_ARM_R": "00B4D8FF",
+    "FOREARM_R": "00B4D8FC",
+    "HAND_R": "00B4D8FB",
+    "THIGH_L": "00B4D8F6",
+    "SHIN_L": "00B4D8F9",
+    "FOOT_L": "00B4581A",
+    "THIGH_R": "00B4D900",
+    "SHIN_R": "00B4D8FE",
+    "FOOT_R": "00B4D8FD"
+  },
+  "extended_segment_presets": [
+    { "name": "L5", "parent": "PELVIS", "offset_m": [0.0, 0.08, 0.0], "label_es": "Lumbar L5" },
+    { "name": "L3", "parent": "PELVIS", "offset_m": [0.0, 0.16, 0.0], "label_es": "Lumbar L3" },
+    { "name": "T12", "parent": "STERNUM", "offset_m": [0.0, -0.06, 0.0], "label_es": "Torácica T12" },
+    { "name": "T8", "parent": "STERNUM", "offset_m": [0.0, 0.05, 0.0], "label_es": "Torácica T8" },
+    { "name": "NECK", "parent": "STERNUM", "offset_m": [0.0, 0.16, 0.0], "label_es": "Cuello C7" },
+    { "name": "TOE_L", "parent": "FOOT_L", "offset_m": [0.0, 0.0, 0.18], "label_es": "Punta Pie Izq." },
+    { "name": "TOE_R", "parent": "FOOT_R", "offset_m": [0.0, 0.0, 0.18], "label_es": "Punta Pie Der." },
+    { "name": "PROP_1", "parent": "HAND_L", "offset_m": [0.08, 0.0, 0.0], "label_es": "Objeto / Prop 1" },
+    { "name": "PROP_2", "parent": "HAND_R", "offset_m": [-0.08, 0.0, 0.0], "label_es": "Objeto / Prop 2" }
+  ]
+}
+

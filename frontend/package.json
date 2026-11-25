@@ -1,0 +1,108 @@
+{
+  "name": "openmocap-studio",
+  "version": "1.0.0",
+  "private": true,
+  "description": "OpenMocap Studio - APLICACION_TRAJE: Captura de movimiento inercial multi-marca con visor 3D y exportación Blender",
+  "main": "electron/main.cjs",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 0.0.0.0 --port 5173 --strictPort",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "electron:dev": "concurrently -k \"npm.cmd run dev\" \"wait-on http://localhost:5173 && electron .\"",
+    "electron:build": "npm.cmd run build && electron-builder --win",
+    "electron:pack": "npm.cmd run build && electron-builder --dir"
+  },
+  "dependencies": {
+    "@react-three/drei": "9.117.3",
+    "@react-three/fiber": "8.17.10",
+    "electron-updater": "^6.8.11",
+    "lucide-react": "0.460.0",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "recharts": "2.13.3",
+    "three": "0.169.0",
+    "zustand": "5.0.1"
+  },
+  "devDependencies": {
+    "@types/react": "18.3.12",
+    "@types/react-dom": "18.3.1",
+    "@types/three": "0.169.0",
+    "@vitejs/plugin-react": "4.3.3",
+    "autoprefixer": "10.4.20",
+    "concurrently": "9.1.0",
+    "electron": "33.2.0",
+    "electron-builder": "25.1.8",
+    "postcss": "8.4.49",
+    "tailwindcss": "3.4.15",
+    "typescript": "5.6.3",
+    "vite": "5.4.11",
+    "wait-on": "8.0.1"
+  },
+  "build": {
+    "appId": "com.openmocap.studio.aplicaciontraje",
+    "productName": "OpenMocap Studio",
+    "directories": {
+      "output": "../dist_installer"
+    },
+    "files": [
+      "dist/**/*",
+      "electron/**/*"
+    ],
+    "extraResources": [
+      {
+        "from": "../dist/backend",
+        "to": "backend",
+        "filter": [
+          "**/*"
+        ]
+      },
+      {
+        "from": "../blender_tools",
+        "to": "blender_tools",
+        "filter": [
+          "**/*"
+        ]
+      }
+    ],
+    "win": {
+      "icon": "../build/icon.ico",
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "signAndEditExecutable": false
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "OpenMocap Studio",
+      "runAfterFinish": true,
+      "installerIcon": "../build/icon.ico",
+      "uninstallerIcon": "../build/icon.ico"
+    },
+    "publish": [
+      {
+        "provider": "github",
+        "owner": "Guti31",
+        "repo": "openmocap-studio"
+      }
+    ],
+    "linux": {
+      "target": [
+        "AppImage"
+      ]
+    },
+    "mac": {
+      "target": [
+        "dmg"
+      ]
+    }
+  }
+}

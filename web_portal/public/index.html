@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GutApp · Suite de Aplicaciones de Ingeniería y Mocap 3D</title>
+    <meta
+      name="description"
+      content="Portal oficial GutApp: descarga OpenMocap Studio para Windows 10/11 con soporte Xsens Awinda, calibración guiada por voz y exportación Blender."
+    />
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="container topbar-inner">
+        <a href="#inicio" class="brand">
+          <span class="brand-mark">G</span>
+          <span class="brand-copy">
+            <strong>GutApp</strong>
+            <small>Engineering &amp; Motion Hub</small>
+          </span>
+        </a>
+        <nav class="nav-links">
+          <a href="#destacada">OpenMocap Studio</a>
+          <a href="#catalogo">Catálogo</a>
+          <a href="#flujo">Cómo empezar</a>
+          <a href="#requisitos">Requisitos</a>
+          <a href="https://github.com/Guti31" target="_blank" rel="noopener" class="nav-pill">GitHub @Guti31</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="inicio">
+      <section class="hero" id="destacada">
+        <div class="container hero-grid">
+          <div class="hero-copy">
+            <div class="eyebrow">
+              <span class="dot"></span>
+              <span id="hero-status-badge">Disponible · Windows 10/11 (64-bit)</span>
+            </div>
+            <h1>OpenMocap Studio</h1>
+            <p class="hero-lead" id="hero-description">
+              Software autocontenido para captura de movimiento inercial en tiempo real (17 sensores Xsens Awinda y placas compatibles), esqueleto de 23 huesos tipo Vicon/MVN y exportación directa a Blender.
+            </p>
+
+            <div class="release-meta" id="release-meta">
+              <span class="meta-chip" id="meta-version">Versión v1.0.0</span>
+              <span class="meta-chip" id="meta-size">Instalador autocontenido</span>
+              <span class="meta-chip" id="meta-date">Sincronizado con GitHub Releases</span>
+            </div>
+
+            <div class="cta-row">
+              <a
+                id="hero-download-btn"
+                href="https://github.com/Guti31/openmocap-studio/releases/latest"
+                target="_blank"
+                rel="noopener"
+                class="btn btn-primary"
+              >
+                <span class="btn-icon">⬇</span>
+                <span id="hero-download-label">Descargar Instalador (.exe)</span>
+              </a>
+              <a
+                id="hero-releases-btn"
+                href="https://github.com/Guti31/openmocap-studio/releases/latest"
+                target="_blank"
+                rel="noopener"
+                class="btn btn-secondary"
+              >
+                Ver Notas de Versión
+              </a>
+            </div>
+
+            <div class="driver-links">
+              <span>¿PC limpia sin drivers USB?</span>
+              <a
+                id="driver-movella-link"
+                href="https://www.movella.com/support/software-documentation"
+                target="_blank"
+                rel="noopener"
+              >
+                Drivers Xsens / Movella
+              </a>
+              <span>·</span>
+              <a
+                id="driver-ftdi-link"
+                href="https://ftdichip.com/drivers/vcp-drivers/"
+                target="_blank"
+                rel="noopener"
+              >
+                Drivers FTDI VCP Serial
+              </a>
+            </div>
+          </div>
+
+          <div class="hero-card">
+            <div class="card-header">
+              <span>Capacidades Clave · v<span id="card-version">1.0.0</span></span>
+              <span class="tag-live">Auto-Actualizable</span>
+            </div>
+            <ul class="feature-list" id="hero-features">
+              <li>Sincronización Plug &amp; Play con antena USB Xsens Awinda y bloqueo de canal RF.</li>
+              <li>Esqueleto articulado de 23 huesos tipo Vicon/MVN (Spine..Spine3, Neck, Hand y ToeBase).</li>
+              <li>Calibración guiada por voz en español (Con Ayuda o Automática Solo).</li>
+              <li>Estabilidad ZUPT en Pelvis, piso exacto Y=0 y exportación .BVH / .FBX / .MP4.</li>
+            </ul>
+            <div class="release-notes-box">
+              <div class="release-notes-title">Últimas notas de publicación</div>
+              <pre id="release-notes-content">Cargando información oficial desde GitHub Releases...</pre>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="flujo">
+        <div class="container">
+          <div class="section-head">
+            <h2>De cero a animación en Blender en 3 pasos</h2>
+            <p>Instalador Windows 10/11 con backend Python y worker XDA oficial ya empaquetados.</p>
+          </div>
+          <div class="steps-grid">
+            <article class="step-card">
+              <div class="step-num">01</div>
+              <h3>Instala y Conecta</h3>
+              <p>Ejecuta el instalador <code>OpenMocap Studio Setup.exe</code>, crea tu acceso directo en el escritorio y conecta la antena USB Xsens Awinda (o inicia la Demo Virtual de 17 sensores).</p>
+            </article>
+            <article class="step-card">
+              <div class="step-num">02</div>
+              <h3>Calibra con Guía de Voz</h3>
+              <p>Elige <strong>Con Ayuda</strong> o <strong>Calibración Solo</strong>: el asistente te guía por voz en Pose T (4 s), Posición Recta (3 s) y Caminata (6 s) para eliminar inclinaciones residuales.</p>
+            </article>
+            <article class="step-card">
+              <div class="step-num">03</div>
+              <h3>Graba y Exporta a Blender</h3>
+              <p>Graba con Pose T inicial/final en un clic y exporta archivos <code>.BVH</code> o <code>.FBX</code> de 23 huesos listos para Mixamo, Rigify o retargeting en Blender.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-alt" id="catalogo">
+        <div class="container">
+          <div class="catalog-toolbar">
+            <div>
+              <h2>Ecosistema de Aplicaciones GutApp</h2>
+              <p>Plataforma extensible: cada nueva herramienta de escritorio o laboratorio se integra al catálogo.</p>
+            </div>
+            <div class="filter-controls">
+              <input
+                type="search"
+                id="search-input"
+                placeholder="Buscar aplicación..."
+                aria-label="Buscar aplicación"
+              />
+              <div class="category-pills" id="category-pills"></div>
+            </div>
+          </div>
+
+          <div class="apps-grid" id="apps-grid"></div>
+
+          <div class="upcoming-block">
+            <h3>Próximamente en GutApp</h3>
+            <div class="upcoming-grid" id="upcoming-grid"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="requisitos">
+        <div class="container req-layout">
+          <div>
+            <h2>Requisitos del Sistema</h2>
+            <p>OpenMocap Studio incluye todo el entorno de ejecución necesario sin instalaciones manuales de Python.</p>
+            <ul class="req-list" id="requirements-list"></ul>
+          </div>
+          <div class="update-info-panel">
+            <h3>Actualizaciones Automáticas</h3>
+            <p>
+              Cada versión publicada en <strong>Guti31/openmocap-studio</strong> se sincroniza automáticamente con este portal web y notifica dentro de la aplicación instalada en Windows para descargar e instalar con un clic.
+            </p>
+            <a
+              href="https://github.com/Guti31/openmocap-studio/releases"
+              target="_blank"
+              rel="noopener"
+              class="btn btn-outline"
+            >
+              Historial Completo de Releases
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container footer-inner">
+        <span>© <span id="footer-year">2026</span> <strong>GutApp</strong> · Desarrollado por Guti31</span>
+        <span>OpenMocap Studio · Captura Inercial 3D &amp; Blender Pipeline</span>
+      </div>
+    </footer>
+
+    <script src="/app.js"></script>
+  </body>
+</html>

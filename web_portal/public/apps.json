@@ -1,0 +1,54 @@
+{
+  "brand": "GutApp",
+  "tagline": "Plataforma de Software de Ingeniería y Captura de Movimiento",
+  "owner": "Guti31",
+  "contactEmail": "gutierrezrobert672@gmail.com",
+  "apps": [
+    {
+      "id": "openmocap-studio",
+      "name": "OpenMocap Studio",
+      "badge": "Software Destacado",
+      "category": "Captura de Movimiento 3D / Ingeniería",
+      "platform": "Windows 10/11 (64-bit)",
+      "status": "Disponible",
+      "fallbackVersion": "1.0.0",
+      "githubRepo": "Guti31/openmocap-studio",
+      "shortDesc": "Estudio profesional autocontenido para captura de movimiento inercial con sensores Xsens Awinda (17 IMUs), placas ESP32/Arduino, esqueleto articulado de 23 huesos tipo Vicon y exportación 1-clic a Blender.",
+      "highlights": [
+        "Sincronización Plug & Play con antena USB Xsens Awinda y bloqueo permanente de canal RF.",
+        "Esqueleto anatómico de 23 huesos tipo Vicon/MVN (columna de 4 segmentos, cuello, manos y dedos del pie).",
+        "Calibración guiada por voz en español (Con Ayuda o Automática Solo) con compensación escapular y Postura Recta.",
+        "Estabilidad ZUPT del Root/Pelvis, contacto exacto en Y=0 y exportación directa a .BVH, .FBX (Blender) y video .MP4."
+      ],
+      "requirements": [
+        "Sistema operativo Windows 10 u 11 de 64 bits",
+        "Procesador Intel Core i5 / AMD Ryzen 5 o superior",
+        "8 GB de memoria RAM (recomendado 16 GB para 120 Hz + Blender)",
+        "1 puerto USB disponible para estación/dongle Xsens Awinda (opcional en modo demo virtual)",
+        "Blender 3.6+ o 4.x instalado únicamente si se desea conversión directa 1-clic a .FBX"
+      ],
+      "fallbackDownloadUrl": "https://github.com/Guti31/openmocap-studio/releases/latest",
+      "repoUrl": "https://github.com/Guti31/openmocap-studio",
+      "driversUrl": "https://www.movella.com/support/software-documentation",
+      "ftdiDriversUrl": "https://ftdichip.com/drivers/vcp-drivers/"
+    }
+  ],
+  "upcoming": [
+    {
+      "id": "gutapp-telemetry-inspector",
+      "name": "GutApp Telemetry Lab",
+      "category": "Análisis Biomecánico / CSV",
+      "platform": "Windows / Web",
+      "status": "Próximamente",
+      "description": "Visor comparativo multi-toma para gráficas articulares, velocidad angular y reportes clínicos exportables."
+    },
+    {
+      "id": "gutapp-serial-flasher",
+      "name": "GutApp IMU Flasher",
+      "category": "Firmware / ESP32 & BNO085",
+      "platform": "Windows 10/11",
+      "status": "En desarrollo",
+      "description": "Utilidad de un clic para flashear firmware UDP/OSC a 120 Hz en nodos inalámbricos Wi-Fi de bajo costo."
+    }
+  ]
+}

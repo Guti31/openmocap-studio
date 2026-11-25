@@ -1,0 +1,40 @@
+# Entornos virtuales y dependencias
+.venv/
+.venv_xda/
+backend/.venv/
+backend/.venv_xda/
+node_modules/
+frontend/node_modules/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Artefactos compilados e instaladores locales
+dist/
+dist_installer/
+frontend/dist/
+build/pyinstaller_work/
+build/pyinstaller_work_xda/
+
+# Datos de usuario, capturas y archivos multimedia pesados
+exports/
+backend/data/
+*.omocap
+*.omocap.meta.json
+*.mp4
+*.webm
+*.bvh
+*.fbx
+
+# SDK local pesado y configuraciones de hardware por máquina
+backend/xda_sdk/
+backend/config/xda_paths.json
+backend/config/awinda_radio.json
+
+# Cache Firebase y logs
+.firebase/
+web_portal/.firebase/
+*.log
+.DS_Store
+Thumbs.db
